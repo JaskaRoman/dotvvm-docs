@@ -1,7 +1,7 @@
 ﻿# Excel export
 `GridViewExportExcel<T>` from the `DotVVM.BusinessPack.Export.Excel` package allows you to export `GridView` data into an [OpenXML SpreadsheetML](TODO) format document.
 
-DotVVM Excel exporter uses the [ClosedXML](TODO) library for document creation and manipulation. The ClosedXML objects are exposed and can be accessed using extensibility points described below.
+DotVVM Excel exporter uses the [ClosedXML](https://github.com/ClosedXML/ClosedXML) library for document creation and manipulation. The ClosedXML objects are exposed and can be accessed using extensibility points described below.
 
 While the basic process remains as described in [Exporting data](TODO), additional features are supported by the Excel exporter.
 These features are controlled by the `GridViewExportExcelSettings<T>` class.
