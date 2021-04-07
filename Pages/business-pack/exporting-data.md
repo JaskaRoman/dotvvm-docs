@@ -4,9 +4,12 @@
 Export-related classes can be found in the `DotVVM.BusinessPack.Export` namespace provided by the optional NuGet packages.
 
 Following export formats are available as separate packages:
-- **Excel** - `GridViewExportExcel<T>` from the `DotVVM.BusinessPack.Export.Excel` package.
-- **Csv** - `GridViewExportCsv<T>` from the `DotVVM.BusinessPack.Export.Csv` package.
-- **Pdf** - `GridViewExportPdf<T>` from the `DotVVM.BusinessPack.Export.Pdf` package.
+
+||Extension|MIME type|Exporter class|Export settings class|Namespace|
+|---|---|---|---|---|
+|**Excel**|xlsx|`application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`|`GridViewExportExcel<T>`|`GridViewExportExcelSettings<T>`|`DotVVM.BusinessPack.Export.Excel`|
+|**Csv**|csv|`text/csv`|`GridViewExportCsv<T>`|`GridViewExportCsvSettings<T>`|`DotVVM.BusinessPack.Export.Csv`|
+|**Pdf**|pdf|`application/pdf`|`GridViewExportPdf<T>`|`GridViewExportPdfSettings<T>`|`DotVVM.BusinessPack.Export.Pdf`|
 
 Support for additional export formats can be added by implementing the `IGridViewExport<T>` interface.
 See [Custom export formats](TODO) for more information.
