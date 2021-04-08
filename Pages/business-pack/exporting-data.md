@@ -39,7 +39,7 @@ The basic export process itself consists of three steps:
 
 #### Sample
 ```DOTHTML
-    <bp:GridView DataSource="{value: CustomerDataSet}">
+    <bp:GridView DataSource="{value: CustomerDataSet}" ID="CustomerGrid">
         <Columns>
             <bp:GridViewNumericColumn Value="{value: CustomerId}" />
             <bp:GridViewTextColumn Value="{value: Name}" />
