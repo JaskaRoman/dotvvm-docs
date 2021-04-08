@@ -80,26 +80,3 @@ GridViewExportExcelSettings<CustomerData>.Default
         .WithHeaderText("Phone number 📞"));
 ```
     
-
-### Extensibility points
-Each abstract rule class contains multiple overridable virtual methods invoked during the export process.
-#### WorksheetRule
-|Method|Parameters|Description|
-|---|---|---|
-|`OnWorksheetExporting`|`IXLWorksheet worksheet`|Called before the worksheet is exported.|
-|`OnDataExporting`|`IXLWorksheet worksheet, ExportData exportData`|Called before data is exported.|
-|`OnDataExported`|`IXLWorksheet worksheet, ExportData exportData`|Called after data is exported.|
-
-Custom worksheet rules can be created by extending the `Worksheet` class and overriding the methods above.
-
-A delegate-based worksheet rule called `AnonymousWorksheetRule` can be used for simple rules without the need for a dedicated class. 
-
-#### ColumnRule
-|Method|Parameters|Description|
-|---|---|---|
-|`OnDataTransforming`|`ExportData exportData, ColumnData columnData`|Called during the data-transformation part of the export process.|
-|`OnColumnExporting`|`IXLColumn column`|Called before the column is exported.|
-|`OnColumnExported`|`IXLColumn column`|Called after the column is exported.|
-|`OnCellExporting`|`IXLCell cell, ColumnValue columnValue`|Called before a cell in the column is exported.|
-|`OnCellExported`|`IXLCell cell, ColumnValue columnValue`|Called after a cell in the column is exported.|
-
