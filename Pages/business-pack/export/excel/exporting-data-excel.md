@@ -21,10 +21,10 @@ Following abstract implementations of `IExcelExportRule` are available. All buil
 
 |Type|Description|
 |---|---|
-|`WorksheetRule`|An `IExcelExportRule` targeting the entire worksheet.|
-|`ColumnRule`|An `IExcelExportRule` targeting a single column. <br /> Internal column name must be specified. |
+|`WorksheetRule`|An `IExcelExportRule` targeting the entire worksheet. See [Worksheet rules](TODO) for more information.|
+|`ColumnRule`|An `IExcelExportRule` targeting a single column.<br/>Internal column name must be specified. See [Column rules](TODO) for more information.|
 
-Only the last instance of each concrete rule type is applied, unless `IStackableExcelExportRule` is implemented. See **Sample 2**.
+Only the last instance of each concrete rule type is applied, unless `IStackableExcelExportRule` is implemented. See [Sample 2](#sample-2).
 
 Two rule presets are available as static get-only properties of the `GridViewExportExcelSettings<T>` class.
 - `Empty` - Creates an instance of `GridViewExportExcelSettings<T>` with an empty rule set.
