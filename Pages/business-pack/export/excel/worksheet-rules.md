@@ -6,7 +6,7 @@ Following worksheet rules are available.
 
 |Class name|Parameters|Description|
 |---|---|---|
-|`AdjustToContentsWorksheetRule`|None|Adjusts the size of used cells in the entire worksheet in order to accommodate their contents.|
+|`AdjustToContentsWorksheetRule`|None|Adjusts the size of used cells in the entire worksheet in order to accommodate their contents. A per-column version of this rule is available. See [`AdjustToContentsColumnRule`](TODO).|
 |`StartAddressWorksheetRule`|`int row, int column`|Offsets the starting cell address of the export range.|
 |`TableHeaderWorksheetRule`|`bool createTable`|Creates a header row with the option of creating an explicit Excel table range.|
 |`WorksheetNameWorksheetRule`|`string worksheetName`|Applies a custom worksheet name.|

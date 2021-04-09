@@ -14,6 +14,8 @@ The Excel-specific class `GridViewExportExcelSettings<T>` consists of following 
 |`ColumnValueProviderHandlers<T>`|`ColumnValueProviderHandlers`|Value providers used to retrieve the data from exported data-context.|
 |`ICollection<IExcelExportRule>`|`ExportRules`|Rules applied during the export process.|
 
+**Export settings are not serializable and should not be sent to the client.**
+
 ## Export rules
 Following abstract implementations of `IExcelExportRule` are available. All built-in rules are based on these classes.
 
@@ -28,11 +30,11 @@ Two rule presets are available as static get-only properties of the `GridViewExp
 - `Empty` - Creates an instance of `GridViewExportExcelSettings<T>` with an empty rule set.
 - `Default` - Creates an instance of `GridViewExportExcelSettings<T>` with an [`AdjustToContentsWorksheetRule`](TODO) and a [`TableHeaderWorksheetRule`](TODO).
 
-When no rules are passed to the `GridViewExportExcelSettings<T>` constructor, the `Default` rule preset is used. This is the case in **Sample 1**.
+When no rules are passed to the `GridViewExportExcelSettings<T>` constructor, the `Default` rule preset is used. This is the case in [Sample 1](#sample-1).
 
-A **Fluent API** for population of the `ExportRules` collection is available. See **Sample 3**.
+A **Fluent API** for population of the `ExportRules` collection is available. See [Sample 3](#sample-3).
 
-##### Sample 1
+#### Sample 1
 
 A simple set of export rules, which will achieve the following results:
 - The exported worksheet will be named *“Phone numbers”*.
@@ -57,7 +59,7 @@ new GridViewExportExcelSettings<CustomerData>
 }
 ```
 
-##### Sample 2
+#### Sample 2
 This example illustrates the behavior described above. When multiple instances of the same rule type are present, only the last is applied. The resulting phone number column will be stored as a `Number`, because the last instance of `DataTypeColumnRule` for given column name takes precedence over all previous.
 
 ```CSHARP
@@ -68,9 +70,9 @@ ExportRules =
 }
 ```
 
-##### Sample 3
+#### Sample 3
 This sample illustrates the usage of included **Fluent API** for rule construction.
-The produced rule set is functionally equal to the rule set constructed in **Sample 1**.
+The produced rule set is functionally equal to the rule set constructed in [Sample 1](#sample-1).
 
 ```CSHARP
 GridViewExportExcelSettings<CustomerData>.Default

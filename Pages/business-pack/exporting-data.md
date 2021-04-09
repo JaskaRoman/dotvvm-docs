@@ -37,7 +37,7 @@ The basic export process itself consists of three steps:
    - An instance of `GridView` and `IBusinessPackDataSet<T>` must be provided.
 3. Consumption of the resulting `Stream` representing the exported file.
 
-#### Sample
+#### Sample 1
 ```DOTHTML
     <bp:GridView DataSource="{value: CustomerDataSet}" ID="CustomerGrid">
         <Columns>
