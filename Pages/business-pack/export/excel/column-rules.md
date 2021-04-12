@@ -20,7 +20,7 @@ Following column rules are available.
 
 When a column is being exported, rules matching its `ColumnName` are looked up and applied. This means that rules with incorrect `ColumnName` values will be quietly ignored.
 
-#### Sample 1
+### Sample 1
 The column name of a `GridViewColumn` can be set explicitly using the `ColumnName` DotVVM property. When not set, a column name is generated. For columns based on the `GridViewValueColumn<TValue, TProperty>` base class, bound directly to a property (“*Name*” in case of this sample), the name of the property is used.\
 If you intend to adress a column with non-trivial binding from your code (“*PriceWithCurrencyCode*” in case of this sample), it is recommended to set the column name explicitly.
 
@@ -63,7 +63,7 @@ public void OnExportButtonClicked()
 <bp:Button Click="{command: OnExportButtonClicked()}" Text="Export to Excel" />
 ```
 
-#### Sample 2
+### Sample 2
 `ValueTransformColumnRule<TSrc, TDst>` can be used to transform the exported value before the actual export. Source type and target type must be specified. Multiple instances of this rule can be applied on the same column.\
 In this example, a boolean value is transformed into a user-friendly string.
 ```CSHARP
@@ -74,9 +74,7 @@ ExportRules =
 }
 ```
 
----
-
-### Extensibility points
+## Extensibility points
 The abstract `ColumnRule` class contains multiple overridable virtual methods invoked during the export process.
 
 |Method|Parameters|Description|
@@ -93,7 +91,7 @@ A delegate-based worksheet rule called `AnonymousColumnRule` can be used for sim
 
 
 
-#### Sample 3
+### Sample 3
 The `AnonymousColumnRule` can be used to quickly access the underlying ClosedXML objects. Multiple instances of this rule can be applied on the same column.
 Alternatively, a custom column rule can be implemented by extending the `ColumnRule` base class.
 
@@ -116,6 +114,68 @@ public class BlueColorColumnRule : ColumnRule
     {
         cell.Style.Fill.BackgroundColor = XLColor.LightBlue;
         cell.Style.Font.FontColor = XLColor.DarkBlue;
+    }
+}
+```
+
+## Fluent API
+A Fluent API is available for construction of column rules.
+
+### Sample 4
+Column rule creation chain is implemented as an extension method `ForColumn` extending the `GridViewExportExcelSettings<T>` class.\
+This method has two parameters - first determines the target column name while the second defines a `Func` which transforms the current `ICollection<ColumnRule>`. These transformations can either directly modify the passed `ICollection<ColumnRule>` instance using regular collection manipulation operations, or use the additional Fluent methods described in [Sample 5](#sample-5).
+
+Two overloads of the `ForColumn` method are available, differing only in the way the column name is specified.\
+The first option is to specify the column name directly using a string. This is ideal for columns with custom names, as described in [Sample 1](#sample-1).\
+The second option is to pass a member selector expression, which will be used to retrieve the member name. This will only work with column bound directly to a property.
+```CSHARP
+GridViewExportExcelSettings<ProductData>.Empty
+    .ForColumn("Name", r => r.WithAdjustToContent())
+```
+```CSHARP
+GridViewExportExcelSettings<ProductData>.Empty
+    .ForColumn(c => c.Name, r => r.WithAdjustToContent())
+```
+
+Multi-propery paths in the member selector expression are supported, while indexed access is not.
+```CSHARP
+GridViewExportExcelSettings<ProductData>.Empty
+    // Supported
+    .ForColumn(c => c.ProductType.Name, r => r.WithAdjustToContent())
+    // Not supported
+    
+```
+
+### Sample 5
+Once the target column is specified using the first parameter of the `ForColumn` method described in [Sample 4](#sample-4), the current collection of rules for given column can be modified.
+All built-in column rules are accessible using the prefix `With` in the context of an `ICollection<ColumnRule>`.
+These methods return a transformed collection and can be chained.
+
+*Please note, that for technical reasons, the rule column names set from within the rule transformation `Func` of the `ForColumn` method will be overwritten by the column name set in the first parameter of the `ForColumn` method. This explains why `null` is used as the column name in the second code block of this sample.*
+```CSHARP
+GridViewExportExcelSettings<ProductData>.Empty
+    .ForColumn("Name", r => r
+        .WithAdjustToContent()
+        .WithHeaderText("Product name"));
+```
+The code above is functionally equal to:
+```CSHARP
+GridViewExportExcelSettings<ProductData>.Empty
+    .ForColumn("Name", r => 
+        {
+            r.Add(new AdjustToContentsColumnRule(null));
+            r.Add(new HeaderTextColumnRule(null, "Product name"));
+            return r;
+        });
+```
+Which in turn is equal to:
+```CSHARP
+new GridViewExportExcelSettings<ProductData>(Enumerable.Empty<IExcelExportRule>())
+{
+    ExportRules = 
+    {
+        new AdjustToContentsColumnRule("Name"),
+        new HeaderTextColumnRule("Name", "Product name")
     }
 }
 ```
