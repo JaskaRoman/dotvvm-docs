@@ -149,6 +149,9 @@ GridViewExportExcelSettings<ProductData>.Empty
 ### Sample 5
 Once the target column is specified using the first parameter of the `ForColumn` method described in [Sample 4](#sample-4), the current collection of rules for given column can be modified.
 All built-in column rules are accessible using the prefix `With` in the context of an `ICollection<ColumnRule>`.
+
+Worksheet rule creation is described in the [FluentAPI section of the Worksheet rules page](TODOT#fluent-api).
+
 These methods return a transformed collection and can be chained.
 
 *Please note, that for technical reasons, the rule column names set from within the rule transformation `Func` of the `ForColumn` method will be overwritten by the column name set in the first parameter of the `ForColumn` method. This explains why `null` is used as the column name in the second code block of this sample.*

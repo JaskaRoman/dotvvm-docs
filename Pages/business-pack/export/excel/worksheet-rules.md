@@ -68,3 +68,29 @@ public class CustomMetadataWorksheetRule : WorksheetRule
     }
 }
 ```
+
+## Fluent API
+A Fluent API is available for construction of worksheet rules.
+
+### Sample 2
+Worksheet rule creation is implemented as a series of extension methods for the `GridViewExportExcelSettings<T>` class.\
+These methods always start with the prefix `With` and mirror the column rules described above.
+Column rule creation is described in the [FluentAPI section of the Column rules page](TODOT#fluent-api).
+
+```CSHARP
+GridViewExportExcelSettings<ProductData>.Empty
+    .WithWorksheetName("Foo")
+    .WithStartAddress("B2")
+```
+The code above is functionally equal to:
+```CSHARP
+new GridViewExportExcelSettings<ProductData>(Enumerable.Empty<IExcelExportRule>())
+{
+    ExportRules = 
+    {
+        new WorksheetNameWorksheetRule("Foo"),
+        new StartAddressWorksheetRule(2,2)
+    }
+}
+```
+
