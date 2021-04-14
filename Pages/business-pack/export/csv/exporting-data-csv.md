@@ -12,6 +12,7 @@ The csv-specific class `GridViewExportCsvSettings<T>` consists of following inst
 |`ColumnValueProviderHandlers<T>`|`ColumnValueProviderHandlers`|Value providers used to retrieve the data from exported data-context.|
 |`bool`|`CreateHeader`|Determines whether a header row is created. Defaults to `true`.|
 |`string`|`Separator`|Determines what string is used to separate column values. Defaults to `","`.|
+|`QuotedValue`|`QuotedValue`|Determines whether the column values should be wrapped in quotation marks. Defaults to `QuotedValue.IfNeeded`.|
 
 **Export settings are not serializable and should not be sent to the client.**
 
