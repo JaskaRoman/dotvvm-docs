@@ -48,7 +48,7 @@ public class CustomerData
 }
 ```
 ```CSHARP
-new GridViewExportExcelSettings<CustomerData>
+var exportSettings = new GridViewExportExcelSettings<CustomerData>
 {
     ExportRules =
     {
@@ -56,7 +56,9 @@ new GridViewExportExcelSettings<CustomerData>
         new DataTypeColumnRule(nameof(CustomerData.PhoneNumber), XLDataType.Text),
         new HeaderTextColumnRule(nameof(CustomerData.PhoneNumber), "Phone number 📞")
     }
-}
+};
+
+var export = new GridViewExportExcel<CustomerData>(exportSettings);
 ```
 
 #### Sample 2
