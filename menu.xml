@@ -181,8 +181,15 @@
 	  <DocPageMenuItem RouteName="overview" PageName="Overview" LegacyPaths="commercial-business-pack-theme-editor" />
 	  <DocPageMenuItem RouteName="customize" PageName="Customize control styles" />
 	</DocPageMenuItem>
-	<DocPageMenuItem RouteName="exporting-data" PageName="Exporting data" />
-    <DocPageMenuItem RouteName="release-notes" PageName="Release notes" LegacyPaths="commecial-business-pack-release-notes" />
+    <DocPageMenuItem RouteName="exporting-data" PageName="Exporting data" >
+      <DocPageMenuItem RouteName="excel" PageName="Excel">
+        <DocPageMenuItem RouteName="exporting-data-excel"/>
+				<DocPageMenuItem RouteName="worksheet-rules"/>
+				<DocPageMenuItem RouteName="column-rules"/>
+      </DocPageMenuItem>
+      <DocPageMenuItem RouteName="exporting-data-csv" PageName="Csv" />
+    </DocPageMenuItem>
+      <DocPageMenuItem RouteName="release-notes" PageName="Release notes" LegacyPaths="commecial-business-pack-release-notes" />
   </DocPageMenuItem>
     
   <DocPageMenuItem RouteName="bootstrap-for-dotvvm" PageName="Bootstrap for DotVVM">
