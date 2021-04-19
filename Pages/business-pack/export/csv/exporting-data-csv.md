@@ -18,7 +18,7 @@ The csv-specific class `GridViewExportCsvSettings<T>` consists of following inst
 
 #### Sample 1
 
-A simple set of export rules, which will achieve the following results:
+A simple instance of export settings, which will achieve the following results:
 - The exported file will contain a header row, because `CreateHeader` is set to `true`.
 - The exported column values will be separated by a `","` character, defined by the `Separator` property.
 - The value “*FooBar, Ltd.*” will be sorrounded by quotation marks because it contains a `","` while the `Separator` property is also set to `","` and the `QuotedValue` property is set to `IfNeeded`.
