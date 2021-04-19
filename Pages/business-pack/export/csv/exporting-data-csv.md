@@ -1,5 +1,5 @@
 ﻿# CSV export
-`GridViewExportCsv<T>` from the `DotVVM.BusinessPack.Export.Csv` package allows you to export `GridView` data into an [Comma-separated values](TODO) file.
+`GridViewExportCsv<T>` from the `DotVVM.BusinessPack.Export.Csv` package allows you to export `GridView` data into a [Comma-separated values](TODO) file.
 
 While the basic process remains as described in [Exporting data](TODO), additional features are supported by the Csv exporter.
 These features are controlled by the `GridViewExportCsvSettings<T>` class.
